@@ -1,0 +1,119 @@
+.home_main_container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.nav_bar {
+    background-color: #020617;
+    height: 12vh;
+}
+
+.nav_bar {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: space-around;
+}
+
+.left_navbar {
+    height: 100%;
+    width: 30%;
+}
+
+.left_navbar>img {
+    height: 100%;
+    width: auto;
+}
+
+.right_navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    word-wrap: break-word;
+    letter-spacing: 2px;
+    font: 300 2vh Product Sans;
+}
+
+.right_navbar>a {
+    text-decoration: none;
+    color: black;
+}
+
+.middle_container {
+    height: 88vh;
+    width: 100vw;
+    background-color: #30e682d2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.login_signup_button {
+    display: flex;
+    text-align: center;
+    padding: 2vh 2.5vh 2vh 3vh;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #FFCC00;
+    text-align: center;
+    transition: all 0.3s ease-in;
+}
+
+.login_signup_button:hover {
+    transition: all 0.3s ease-in;
+    transform: scale(1.05);
+}
+
+.left_middle_container {
+    width: 40vw;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 2vh;
+}
+
+.catchy_text_p_1 {
+    font: 400 5vh JetBrains Mono;
+    padding: 2vh 0;
+}
+
+.emphasised_text {
+    font: 300 4.5vh Chilanka;
+}
+
+.catchy_text_p_2 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font: 400 2vh JetBrains Mono;
+    padding: 0.6vh;
+}
+.catchy_text_p_2 > p{
+    text-align: left;
+}
+.right_middle_container {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right_img {
+    width: 30vw;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.847) 0px 22px 70px 4px;
+}
+
+@media only screen and (max-width: 800px) {
+.right_middle_container{
+    display: none;
+}
+.left_middle_container{
+    width: 80vw;
+}
+}

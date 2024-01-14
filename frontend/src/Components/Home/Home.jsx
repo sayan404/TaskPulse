@@ -18,7 +18,6 @@ const Home = () => {
                     </div>
                     <div className="right_navbar">
                         <Link to="/login">
-
                             <span className="login_signup_button">
                                 Login/SignUp <LockOpenIcon sx={{ margin: "auto 0 auto 1vh" }} />
                             </span>
@@ -47,7 +46,7 @@ const Home = () => {
                                 <></>
                             )}
                         </>
-                          <Link to='/login' ><Button variant="contained" color="success" sx={{padding : '1.8vh 4vh' , margin : '2vh' , font : '500 2vh roboto' , borderRadius : '20px'}}>Get Start</Button></Link>
+                        <Link to='/login' ><Button variant="contained" color="success" sx={{ padding: '1.8vh 4vh', margin: '2vh', font: '500 2vh roboto', borderRadius: '20px' }}>Get Started</Button></Link>
                     </div>
                     <div className="right_middle_container">
                         <img className="right_img" src={stat_backg} alt="stat_backg" />

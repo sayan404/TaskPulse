@@ -4,6 +4,7 @@ import {Routes , Route} from 'react-router-dom'
 import Home from './Components/Home/Home'
 import WebFont from 'webfontloader'
 import LoginSignup from './Components/User/LoginSignup'
+import TaskProfile from './Components/TaskProfile/TaskProfile'
 function App() {
   const [count, setCount] = useState(0)
   useEffect(() => {
@@ -18,6 +19,7 @@ function App() {
      <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<LoginSignup />} />
+      <Route path='/taskprofile' element={<TaskProfile />} />
      </Routes>
     </>
   )

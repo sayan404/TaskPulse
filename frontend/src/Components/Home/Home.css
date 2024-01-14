@@ -44,7 +44,7 @@
 .middle_container {
     height: 88vh;
     width: 100vw;
-    background-color: #30e682d2;
+    background-color: #39ff14;
     display: flex;
     justify-content: space-around;
 }
@@ -78,6 +78,7 @@
 .catchy_text_p_1 {
     font: 400 5vh JetBrains Mono;
     padding: 2vh 0;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.708);
 }
 
 .emphasised_text {
@@ -90,6 +91,7 @@
     text-align: center;
     font: 400 2vh JetBrains Mono;
     padding: 0.6vh;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.559);
 }
 .catchy_text_p_2 > p{
     text-align: left;

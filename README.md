@@ -2,6 +2,10 @@
 
 TaskPulse is an intuitive application designed to help users register personalized tasks and efficiently track them based on their status. Whether you're managing personal projects, work tasks, or daily chores, TaskPulse provides a streamlined solution for keeping your tasks organized and ensuring nothing slips through the cracks.
 
+**<p align="center">Participating in</p>**
+<br><br>
+<div align="center"><a href="#"><img src="https://www.jwoc.tech/_next/static/media/jwoc-2024.652c49b8.svg" alt="Banner" width="30%"/></a></div>
+
 ## Features
 
 - **Task Registration**: Easily register new tasks with detailed information, including task name, description, due date, and priority.
@@ -57,3 +61,35 @@ To get started with TaskPulse, follow these steps:
      ```
 
    The frontend development server will start, and you can access the application at `localhost server` by default. Make sure to complete the backend setup (as mentioned in step 2) before running the frontend to ensure proper communication between the frontend and backend.
+4. **Pushing Changes to GitHub**:
+
+   Once you have made your changes and finalized your code in the local files, follow these steps to push the changes to GitHub:
+
+   - Create a new branch for your changes:
+     ```bash
+     git branch <your_branch_name>
+     ```
+
+   - Switch to the new branch:
+     ```bash
+     git checkout <your_branch_name>
+     ```
+
+   - Add all changes to the staging area:
+     ```bash
+     git add .
+     ```
+
+   - Commit the changes with a meaningful commit message:
+     ```bash
+     git commit -m "Your commit message here"
+     ```
+
+   - Push the changes to the remote repository (GitHub):
+     ```bash
+     git push origin <your_branch_name>
+     ```
+
+   After pushing the changes, you can create a pull request on GitHub to merge your changes into the main branch or any desired target branch.
+
+   Note: Make sure you replace `<your_branch_name>` with the actual name you chose for your new branch.

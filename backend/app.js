@@ -3,6 +3,7 @@ const cors = require('cors'); // Import the 'cors' package
 const ErrorHandler = require('./Utils/ErrorHandler')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const path = require("path");
 
 const app = express()
 app.use(express.json());
@@ -16,6 +17,15 @@ const user = require('./Routes/UserRoute')
 
 // api route imports
 app.use('/api/v1', user)
+
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
+});
+
+
 
 // Error Handling of all wrong routes
 app.all('*', (req, res, next) => {

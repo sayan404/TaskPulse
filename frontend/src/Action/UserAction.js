@@ -22,7 +22,7 @@ export const login = (email, password) => async (dispatch) => {
   
       const config = { headers: { "Content-Type": "application/json" } };
   
-      const { data } = await axios.post(`http://localhost:8080/api/v1/login`, { email, password }, config);
+      const { data } = await axios.post(`/api/v1/login`, { email, password }, config);
      
       dispatch({ type: LOGIN_SUCCESS, payload: data.user });
     } catch (error) {
@@ -38,7 +38,7 @@ export const login = (email, password) => async (dispatch) => {
   
       const config = { headers: { "Content-Type": "application/json" } };
   
-      const { data } = await axios.post(`http://localhost:8080/api/v1/register`, {name,email,password}, config);
+      const { data } = await axios.post(`/api/v1/register`, {name,email,password}, config);
   
       dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
       

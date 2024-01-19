@@ -44,7 +44,7 @@
 .middle_container {
     height: 88vh;
     width: 100vw;
-    background-color: #39ff14;
+    background-color: #0ffdc9;
     display: flex;
     justify-content: space-around;
 }
@@ -76,9 +76,12 @@
 }
 
 .catchy_text_p_1 {
-    font: 400 5vh JetBrains Mono;
+    /* font: 400 5vh JetBrains Mono; */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: xx-large;
     padding: 2vh 0;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.708);
+
 }
 
 .emphasised_text {

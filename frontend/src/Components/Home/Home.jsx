@@ -28,11 +28,11 @@ const Home = () => {
                     <div className="left_middle_container">
                         <p className="catchy_text_p_1">
                             Empower Your Productivity , Conquer Tasks with
-                            <span className="emphasised_text">TaskPulse</span>
+                            <span className="emphasised_text"> TaskPulse.</span>
                         </p>
                         <p className="catchy_text_p_2">
                             <CheckCircleIcon sx={{ padding: "1vh" }} />
-                            <p>Boost your productivity and take control of your life.</p>
+                            <p> Seamlessly integrate with your calendar to sync tasks and deadlines, ensuring a unified schedule management experience.</p>
                         </p>
                         <>
                             {welcomeText ? (

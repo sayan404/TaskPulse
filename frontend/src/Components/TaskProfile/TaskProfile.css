@@ -1,0 +1,97 @@
+.task-profile {
+    max-width: 800px;
+    margin: 50px auto;
+    }
+    
+    .task-columns {
+    display: flex;
+    justify-content: space-between;
+    }
+    
+    .task-column {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 30%;
+    }
+    
+    .task-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 0 0 8px 0;
+    padding: 8px;
+    }
+    
+    .task-card input {
+    width: 100%;
+    }
+    
+    .task-actions {
+    display: flex;
+    justify-content: space-between;
+    }
+    
+    button {
+    cursor: pointer;
+    border: none;
+    padding: 8px;
+    margin-right: 5px;
+    }
+    
+    .add-task-btn {
+    background-color: #4caf50;
+    color: white;
+    }
+    
+    .edit-btn,
+    .delete-btn,
+    .status-btn {
+    background-color: #2196f3;
+    color: white;
+    }
+    
+    .status-btn.todo {
+    background-color: #4caf50;
+    }
+    
+    .status-btn.doing {
+    background-color: #2196f3;
+    }
+    
+    .status-btn.done {
+    background-color: #f44336;
+    }
+    
+    /* Dropdown Styles */
+    .dropdown {
+    position: relative;
+    display: inline-block;
+    }
+    
+    .dropdown .status-btn {
+    background-color: #ddd;
+    }
+    
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    }
+    
+    .dropdown-content span {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    cursor: pointer;
+    }
+    
+    .dropdown-content span:hover {
+    background-color: #f1f1f1;
+    }
+    
+    .dropdown:hover .dropdown-content {
+    display: block;
+    }
+    

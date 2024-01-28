@@ -21,6 +21,10 @@ TaskPulse is an intuitive application designed to help users register personaliz
 ## Installation
 
 To get started with TaskPulse, follow these steps:
+<h2> video for local installation </h2> -> 
+[click here](https://drive.google.com/file/d/1PGEE0GB-b48miM1WpxJF_H7kKeWtySrz/view?usp=sharing)
+
+
 
 1. **Clone the Repository**:
    ```bash

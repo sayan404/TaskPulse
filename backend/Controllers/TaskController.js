@@ -5,7 +5,7 @@ const ErrorHandler = require("../Utils/ErrorHandler");
 
 const createTask = CatchAsyncError(async (req, res, next) => {
   const { title, dueDate, priority, description } = req.body;
-console.log("hit 1")
+  console.log("hit 1");
   if (!title || !dueDate || !priority || !description) {
     throw new ErrorHandler("Please Provide Values for All Fields", 401);
   }

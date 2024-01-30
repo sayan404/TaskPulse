@@ -4,6 +4,7 @@ TaskPulse is an intuitive application designed to help users register personaliz
 
 **<p align="center">Participating in</p>**
 <br><br>
+
 <div align="center"><a href="#"><img src="https://www.jwoc.tech/_next/static/media/jwoc-2024.652c49b8.svg" alt="Banner" width="30%"/></a></div>
 
 ## Features
@@ -26,6 +27,7 @@ To get started with TaskPulse, follow these steps:
    ```bash
    git clone https://github.com/your-username/TaskPulse.git
    cd TaskPulse
+   ```
 2. **Backend Setup**:
 
    - Create a `.env` file in the `backend` folder.
@@ -36,15 +38,16 @@ To get started with TaskPulse, follow these steps:
      ENCRYPTION_REF=<Your Encryption Reference>
      ```
    - Open a terminal and navigate to the `backend` folder:
-     ```bash
+     `bash
      cd backend
-     ```
-   - Run the backend server with the following command:
-     ```bash
+     `
+     Run the frontend development server using the following command:
+     `bash
      npm run dev
-     ```
+     `
 
    Ensure that you have a MongoDB instance running and replace `<Your MongoDB Connection URL>` with the appropriate connection URL. The `ENCRYPTION_REF` is a reference used for encryption; replace it with a secret key for your application.
+
 3. **Frontend Setup**:
 
    - Open a new terminal and navigate to the `frontend` folder:
@@ -61,26 +64,31 @@ To get started with TaskPulse, follow these steps:
      ```
 
    The frontend development server will start, and you can access the application at `localhost server` by default. Make sure to complete the backend setup (as mentioned in step 2) before running the frontend to ensure proper communication between the frontend and backend.
+
 4. **Pushing Changes to GitHub**:
 
    Once you have made your changes and finalized your code in the local files, follow these steps to push the changes to GitHub:
 
    - Create a new branch for your changes:
+
      ```bash
      git branch <your_branch_name>
      ```
 
    - Switch to the new branch:
+
      ```bash
      git checkout <your_branch_name>
      ```
 
    - Add all changes to the staging area:
+
      ```bash
      git add .
      ```
 
    - Commit the changes with a meaningful commit message:
+
      ```bash
      git commit -m "Your commit message here"
      ```

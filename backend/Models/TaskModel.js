@@ -5,15 +5,15 @@ module.exports = (mongoose) => {
     {
       taskName: {
         type: String,
-        required: [true, "Please Provide Task Title"],
+        required: [true, "Please provide task title"],
       },
       dueDate: {
         type: String,
-        required: [true, "Due Date is Required"],
+        required: [true, "Due date is required"],
       },
       description: {
         type: String,
-        required: [true, "Please Provide Description"],
+        required: [true, "Please provide description"],
       },
       priority: {
         type: String,

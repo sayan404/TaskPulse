@@ -1,0 +1,9 @@
+{
+  "extends": [
+    // "some-other-config-you-use",
+    "prettier"
+  ],
+  "rules": {
+    // "indent":"error"
+  }
+}

@@ -1,6 +1,5 @@
 const express = require("express");
 const { isAuthenticUser } = require("../Middleware/Auth");
-const {} = require("../Controllers/UserController");
 const {
   createTask,
   deleteTask,

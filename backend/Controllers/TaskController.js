@@ -87,4 +87,4 @@ const deleteTask = CatchAsyncError(async (req, res, next) => {
   }
 });
 
-module.exports = { createTask, deleteTask };
+module.exports = { createTask, deleteTask,getAllTasks };

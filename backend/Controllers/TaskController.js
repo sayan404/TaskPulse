@@ -34,4 +34,23 @@ const createTask = CatchAsyncError(async (req, res, next) => {
   }
 });
 
+
+const getAllTasks = CatchAsyncError(async (req, res, next) => {
+  const allTasks = await Task.find();
+
+  if (allTasks.length > 0) {
+    return res.status(200).json({
+      success: true,
+      message: "All Tasks Retrieved Successfully",
+      data: allTasks,
+    });
+  } else {
+    return res.status(404).json({
+      success: false,
+      error: "No tasks found",
+    });
+  }
+});
+
 module.exports = { createTask };
+module.exports = { getAllTasks };

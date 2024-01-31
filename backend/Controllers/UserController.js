@@ -14,37 +14,35 @@ const {
 exports.registerUser = CatchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
   // console.log(typeof(name),typeof(email),typeof(password));
+
   if (!name || !email || !password) {
-    return res
-      .status(400)
-      .json({ status: "failed", message: "All fields are required" });
+    return next(new ErrorHandler("All fields are required", 400));
   }
+
   if (!validName(name)) {
-    return res.status(400).json({
-      status: "failed",
-      message: "Invalid name, provide a correct name, regex",
-    });
+    return next(
+      new ErrorHandler("Invalid name, provide a correct name, regex", 400)
+    );
   }
 
   if (!validateEmail(email)) {
-    return res.status(400).json({
-      status: "failed",
-      message: "Invalid email, provide a correct email",
-    });
+    return next(
+      new ErrorHandler("Invalid email, provide a correct email", 400)
+    );
   }
+
   if (!validatePassword(password)) {
-    return res.status(400).json({
-      status: "failed",
-      message:
+    return next(
+      new ErrorHandler(
         "Password must be atleast 8 characters long, must contain 1 uppercase, 1 lowercase, 1 number and 1 special character",
-    });
+        400
+      )
+    );
   }
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return res
-      .status(400)
-      .json({ status: "failed", message: "User already exists" });
+    return next(new ErrorHandler("User already exists", 400));
   }
 
   const user = await User.create({
@@ -61,7 +59,7 @@ exports.registerUser = CatchAsyncError(async (req, res, next) => {
 exports.loginUser = CatchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
   // console.log(email, password);
-  
+
   if (!email || !password) {
     return next(new ErrorHandler(`Please enter email and password`, 400));
   }

@@ -103,3 +103,38 @@ exports.logout = CatchAsyncError(async (req, res, next) => {
     message: "Logged Out Successfully",
   });
 });
+
+// Update Password
+
+exports.updatePassword = CatchAsyncError(async (req, res, next) => {
+  const { user } = req;
+  const { oldPassword, password } = req.body;
+
+  if (!user) {
+    return next(new ErrorHandler("User not found", 404));
+  }
+
+  if (!oldPassword || !password) {
+    return next(
+      new ErrorHandler("Old password and new password are required", 400)
+    );
+  }
+
+  const userWithPassword = await User.findById(user._id).select("+password");
+
+  const isMatched = await userWithPassword.comparePassword(oldPassword);
+  if (!isMatched) {
+    return next(new ErrorHandler("Old password is incorrect", 400));
+  }
+
+  userWithPassword.password = password;
+  await userWithPassword.save();
+  res.status(200).json({
+    success: true,
+    message: "Password Updated Successfully",
+    user: {
+      _id: userWithPassword._id,
+      username: userWithPassword.username,
+    },
+  });
+});

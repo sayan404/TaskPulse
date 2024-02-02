@@ -51,7 +51,7 @@ const getAllTasks = CatchAsyncError(async (req, res, next) => {
   }
 });
 
-const deleteTask = CatchAsyncError(async (req, res, next) => {
+const deleteTask = CatchAsyncError(async (req, res) => {
   // Extracting ID
   const { id } = req.params;
 
@@ -61,9 +61,9 @@ const deleteTask = CatchAsyncError(async (req, res, next) => {
   }
 
   // Checking for Existence of Task in DB
-  const isTodoExist = await Task.findOne({ _id: id });
+  const isTaskExist = await Task.findOne({ _id: id });
 
-  if (isTodoExist) {
+  if (isTaskExist) {
     const isDeleted = await Task.findOneAndDelete({ _id: id });
 
     // Sending Different Response on Base of Status of Deletion
@@ -87,4 +87,48 @@ const deleteTask = CatchAsyncError(async (req, res, next) => {
   }
 });
 
-module.exports = { createTask, deleteTask,getAllTasks };
+const updateTask = CatchAsyncError(async (req, res) => {
+  // Extracting ID from Parameter
+  const { id } = req.params;
+  const { taskName, dueDate, priority, description } = req.body;
+
+  // All Fields Are Required
+  if (!taskName || !dueDate || !priority || !description) {
+    throw new ErrorHandler("Please Provide Valid Value for Fields", 401);
+  }
+
+  if (!id) {
+    // Checking For is ID Present
+    throw new ErrorHandler("Please Provide Valid Id Value", 401);
+  }
+
+  const isTaskExist = await Task.findOne({ _id: id });
+
+  if (isTaskExist) {
+    const isUpdate = await Task.findOneAndUpdate(
+      { _id: id },
+      { taskName, dueDate, priority, description }
+    );
+
+    // Sending Different Response on Base of Status of Updating Task
+    isUpdate &&
+      res.status(200).json({
+        success: true,
+        message: `Task Successfully Updated With Id:${id}`,
+      });
+
+    !isUpdate &&
+      res.status(502).json({
+        success: false,
+        message: `Failed to Update Task With Id:${id}`,
+      });
+  } else {
+    // If Task Not Exist With Provided ID
+    return res.status(402).json({
+      success: false,
+      message: `No Todo Exist With Provided Id`,
+    });
+  }
+});
+
+module.exports = { createTask, deleteTask, getAllTasks, updateTask };

@@ -92,8 +92,13 @@ const updateTask = CatchAsyncError(async (req, res) => {
   const { id } = req.params;
   const { taskName, dueDate, priority, description } = req.body;
 
-  // Checking For is ID Present
+  // All Fields Are Required
+  if (!taskName || !dueDate || !priority || !description) {
+    throw new ErrorHandler("Please Provide Valid Value for Fields", 401);
+  }
+
   if (!id) {
+    // Checking For is ID Present
     throw new ErrorHandler("Please Provide Valid Id Value", 401);
   }
 

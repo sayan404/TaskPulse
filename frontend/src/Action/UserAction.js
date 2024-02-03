@@ -14,6 +14,7 @@ import {
 } from "../Constants/UserConstant";
 
 import axios from "axios";
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
 export const login = (email, password) => async (dispatch) => {
   console.log(email, password);
@@ -23,11 +24,12 @@ export const login = (email, password) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/users/login`,
+      `${API_ENDPOINT}/api/v1/users/login`,
       { email, password },
       config
     );
 
+    localStorage.setItem("userData", JSON.stringify(data?.user));
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.error });
@@ -37,21 +39,23 @@ export const login = (email, password) => async (dispatch) => {
 // Register
 export const register = (name, email, password) => async (dispatch) => {
   try {
+    console.log("Called");
     dispatch({ type: REGISTER_USER_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/users/register`,
+      `${API_ENDPOINT}/api/v1/users/register`,
       { name, email, password },
       config
     );
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: REGISTER_USER_FAIL,
-      payload: error.response.data.error,
+      payload: error,
     });
   }
 };

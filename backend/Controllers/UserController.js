@@ -138,3 +138,44 @@ exports.updatePassword = CatchAsyncError(async (req, res, next) => {
     },
   });
 });
+
+// Update User Profile
+
+exports.updateProfile = CatchAsyncError(async (req, res, next) => {
+  const { user } = req;
+  const { name, email } = req.body;
+
+  if (!name || !email) {
+    return next(new ErrorHandler("Name and Email are required", 400));
+  }
+
+  if (!validName(name)) {
+    return next(
+      new ErrorHandler("Invalid name, provide a correct name, regex", 400)
+    );
+  }
+
+  if (!validateEmail(email)) {
+    return next(
+      new ErrorHandler("Invalid email, provide a correct email", 400)
+    );
+  }
+
+  const userWithSameEmail = await User.findOne({ email });
+  if (userWithSameEmail && userWithSameEmail._id.toString() !== user._id) {
+    return next(new ErrorHandler("User with this email already exists", 400));
+  }
+
+  user.name = name;
+  user.email = email;
+  await user.save();
+  res.status(200).json({
+    success: true,
+    message: "Profile Updated Successfully",
+    user: {
+      _id: user._id,
+      username: user.name,
+      email: user.email,
+    },
+  });
+});

@@ -5,6 +5,8 @@ const {
   logout,
   getUserDetails,
   registerUser,
+  updatePassword,
+  updateProfile,
 } = require("../Controllers/UserController");
 const router = express.Router();
 
@@ -13,5 +15,6 @@ router.route("/login").post(loginUser);
 router.route("/logout").get(logout);
 router.route("/me").get(isAuthenticUser, getUserDetails);
 router.route("/password/update").put(isAuthenticUser, updatePassword);
+router.route("/me/update").put(isAuthenticUser, updateProfile);
 
 module.exports = router;

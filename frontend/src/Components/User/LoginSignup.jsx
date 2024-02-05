@@ -54,6 +54,13 @@ const LoginSignup = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (userData?._id) {
+      navigate("/taskprofile");
+    }
+  }, []);
+
   // const redirect = location.search ? location.search.split("=")[1] : "/taskprofile";
 
   useEffect(() => {

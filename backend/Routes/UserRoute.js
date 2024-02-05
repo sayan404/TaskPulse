@@ -7,6 +7,7 @@ const {
   registerUser,
   updatePassword,
   updateProfile,
+  deleteAccount,
 } = require("../Controllers/UserController");
 const router = express.Router();
 

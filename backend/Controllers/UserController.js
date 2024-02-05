@@ -180,6 +180,7 @@ exports.updateProfile = CatchAsyncError(async (req, res, next) => {
     },
   });
 });
+
 // Delete User
 
 exports.deleteAccount = CatchAsyncError(async (req, res) => {

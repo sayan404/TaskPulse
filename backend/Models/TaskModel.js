@@ -25,6 +25,12 @@ module.exports = (mongoose) => {
         type: String,
         default: "",
       },
+      status: {
+        type: String,
+        enum: ["To-Do", "In Progress", "Completed"],
+        default: "To-Do",
+        required: true,
+      },
       // Later on We'll Change Type of Comments to Ref of Users
       Comments: [
         {

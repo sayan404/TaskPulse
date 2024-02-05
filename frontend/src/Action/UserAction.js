@@ -14,7 +14,7 @@ import {
 } from "../Constants/UserConstant";
 
 import axios from "axios";
-const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT_PROD;
 
 export const login = (email, password) => async (dispatch) => {
   console.log(email, password);

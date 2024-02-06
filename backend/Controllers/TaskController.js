@@ -131,4 +131,30 @@ const updateTask = CatchAsyncError(async (req, res) => {
   }
 });
 
-module.exports = { createTask, deleteTask, getAllTasks, updateTask };
+const updateTaskStatus = CatchAsyncError(async (req, res) => {
+
+    const taskId = req.params.id; 
+    const { newStatus } = req.body; 
+
+    const updatedTask = await Task.findByIdAndUpdate(
+      taskId,
+      { status: newStatus },
+      { new: true } 
+    );
+
+    if (!updatedTask) {
+      return res.status(404).json({
+        success: false,
+        error: 'Task not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Task status updated successfully',
+      data: updatedTask,
+    });
+  
+  });
+
+module.exports = { createTask, deleteTask, getAllTasks, updateTask , updateTaskStatus};

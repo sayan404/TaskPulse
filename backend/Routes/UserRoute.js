@@ -7,6 +7,7 @@ const {
   registerUser,
   updatePassword,
   updateProfile,
+  deleteAccount,
 } = require("../Controllers/UserController");
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.route("/logout").get(logout);
 router.route("/me").get(isAuthenticUser, getUserDetails);
 router.route("/password/update").put(isAuthenticUser, updatePassword);
 router.route("/me/update").put(isAuthenticUser, updateProfile);
+router.route("/account/delete/:id").delete(isAuthenticUser, deleteAccount);
 
 module.exports = router;

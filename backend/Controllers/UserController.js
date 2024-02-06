@@ -180,3 +180,31 @@ exports.updateProfile = CatchAsyncError(async (req, res, next) => {
     },
   });
 });
+
+// Delete User
+
+exports.deleteAccount = CatchAsyncError(async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      throw new ErrorHandler("Please Provide Valid Value for Id", 402);
+    }
+
+    const isUserExist = await User.findByIdAndDelete({ _id: id });
+
+    if (isUserExist) {
+      res.status(201).json({
+        success: true,
+        message: `User Deleted Successfully with Id ${id}`,
+      });
+    } else {
+      res.status(501).json({
+        success: false,
+        message: `Failed to Delete User with Id ${id}`,
+      });
+    }
+  } catch (error) {
+    throw new ErrorHandler("Server Error At Delete User Route", 501);
+  }
+});

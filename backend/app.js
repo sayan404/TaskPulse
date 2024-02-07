@@ -14,10 +14,12 @@ app.use(cors());
 // Route imports
 const user = require("./Routes/UserRoute");
 const task = require("./Routes/TaskRoute");
+const notification = require("./Routes/NotificationRoute");
 
 // api route imports
 app.use("/api/v1/users", user);
 app.use("/api/v1/tasks", task);
+app.use("/api/v1/notification", notification);
 
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 

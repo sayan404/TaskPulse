@@ -1,16 +1,17 @@
 const mongoose = require("mongoose");
-const Task = require("../Models/TaskModel")(mongoose);
+const Task = require("../Models/TaskModel");
 const CatchAsyncError = require("../Middleware/CatchAsyncError");
 const ErrorHandler = require("../Utils/ErrorHandler");
 
 const createTask = CatchAsyncError(async (req, res, next) => {
-  const { title, dueDate, priority, description } = req.body;
+  const { title, dueDate, priority, description, userId } = req.body;
 
-  if (!title || !dueDate || !priority || !description) {
+  if (!userId || !title || !dueDate || !priority || !description) {
     throw new ErrorHandler("Please Provide Values for All Fields", 401);
   }
 
   const addTask = await Task.create({
+    userId,
     taskName: title,
     dueDate,
     priority,
@@ -132,29 +133,33 @@ const updateTask = CatchAsyncError(async (req, res) => {
 });
 
 const updateTaskStatus = CatchAsyncError(async (req, res) => {
+  const taskId = req.params.id;
+  const { newStatus } = req.body;
 
-    const taskId = req.params.id; 
-    const { newStatus } = req.body; 
+  const updatedTask = await Task.findByIdAndUpdate(
+    taskId,
+    { status: newStatus },
+    { new: true }
+  );
 
-    const updatedTask = await Task.findByIdAndUpdate(
-      taskId,
-      { status: newStatus },
-      { new: true } 
-    );
-
-    if (!updatedTask) {
-      return res.status(404).json({
-        success: false,
-        error: 'Task not found',
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      message: 'Task status updated successfully',
-      data: updatedTask,
+  if (!updatedTask) {
+    return res.status(404).json({
+      success: false,
+      error: "Task not found",
     });
-  
-  });
+  }
 
-module.exports = { createTask, deleteTask, getAllTasks, updateTask , updateTaskStatus};
+  res.status(200).json({
+    success: true,
+    message: "Task status updated successfully",
+    data: updatedTask,
+  });
+});
+
+module.exports = {
+  createTask,
+  deleteTask,
+  getAllTasks,
+  updateTask,
+  updateTaskStatus,
+};

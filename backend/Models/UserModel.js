@@ -46,6 +46,13 @@ userSchema.methods.getJWTToken = function () {
     expiresIn: "86400 seconds",
   });
 };
+
+userSchema.methods.getRefreshToken = function () {
+  return jwt.sign({ id: this._id }, process.env.ENCRYPTION_REF, {
+    expiresIn: "15d",
+  });
+};
+
 // Compare Password
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);

@@ -3,6 +3,7 @@ const User = require("../Models/UserModel");
 const ErrorHandler = require("../Utils/ErrorHandler");
 const sendToken = require("../Utils/JwtToken");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 const {
   validName,
   validateEmail,
@@ -99,10 +100,7 @@ exports.logout = CatchAsyncError(async (req, res, next) => {
     expires: new Date(Date.now()),
     httpOnly: true,
   });
-  res.cookie("refreshToken", null, {
-    expires: new Date(Date.now()),
-    httpOnly: true,
-  });
+
   res.status(200).json({
     success: true,
     message: "Logged Out Successfully",
@@ -210,5 +208,24 @@ exports.deleteAccount = CatchAsyncError(async (req, res) => {
     }
   } catch (error) {
     throw new ErrorHandler("Server Error At Delete User Route", 501);
+  }
+});
+
+exports.checkRefreshToken = CatchAsyncError(async (req, res) => {
+  try {
+    const { refreshToken } = req.cookies || req.body;
+    const { id } = jwt.verify(refreshToken, process.env.ENCRYPTION_REF);
+
+    if (id) {
+      const user = await User.findById(id);
+      sendToken(user, 201, res);
+    } else {
+      res
+        .status(402)
+        .json({ success: false, message: "Invalid or Expired RefreshToken" });
+    }
+  } catch (error) {
+    console.log(error);
+    throw new ErrorHandler("Server Error At Check Refresh Token Route", 501);
   }
 });

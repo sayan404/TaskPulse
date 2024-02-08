@@ -217,8 +217,13 @@ exports.checkRefreshToken = CatchAsyncError(async (req, res) => {
     const { id } = jwt.verify(refreshToken, process.env.ENCRYPTION_REF);
 
     if (id) {
-      const user = await User.findById(id);
-      sendToken(user, 201, res);
+      const user = await User.findById(id).select("refreshToken");
+
+      if (user.refreshToken === refreshToken) return sendToken(user, 201, res);
+
+      res
+        .status(402)
+        .json({ success: false, message: "Invalid or Expired RefreshToken" });
     } else {
       res
         .status(402)

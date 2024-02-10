@@ -8,6 +8,7 @@ const {
   updatePassword,
   updateProfile,
   deleteAccount,
+  checkRefreshToken,
 } = require("../Controllers/UserController");
 const router = express.Router();
 
@@ -18,5 +19,7 @@ router.route("/me").get(isAuthenticUser, getUserDetails);
 router.route("/password/update").put(isAuthenticUser, updatePassword);
 router.route("/me/update").put(isAuthenticUser, updateProfile);
 router.route("/account/delete/:id").delete(isAuthenticUser, deleteAccount);
+
+router.route("/refresh").get(checkRefreshToken);
 
 module.exports = router;

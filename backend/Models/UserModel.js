@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
     minLength: [8, "Password should be greater than 8 characters"],
     select: false, // This will hide password when we will be requied this data
   },
+  refreshToken: {
+    type: String,
+    select: false,
+    default: "",
+  },
 
   createdAt: {
     type: Date,
@@ -46,6 +51,16 @@ userSchema.methods.getJWTToken = function () {
     expiresIn: "86400 seconds",
   });
 };
+
+userSchema.methods.getRefreshToken = function () {
+  const refreshToken = jwt.sign({ id: this._id }, process.env.ENCRYPTION_REF, {
+    expiresIn: "15d",
+  });
+  this.refreshToken = refreshToken;
+  this.save();
+  return refreshToken;
+};
+
 // Compare Password
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);

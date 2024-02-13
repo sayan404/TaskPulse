@@ -2,13 +2,39 @@ import React from "react";
 import "./Home.css";
 import logo from "../../assets/Logo.png";
 import stat_backg from "../../assets/stat_backg.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import welcomeText from "../../Data/data";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Button from "@mui/material/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshAccessToken } from "../../Action/UserAction";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { error, loading, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
+  const refreshToken = () => {
+    const refreshToken = document.cookie.split("refreshToken=")[1];
+    console.log(document.cookie);
+    console.log(refreshToken);
+    if (!refreshToken) {
+      navigate("/login");
+    } else {
+      dispatch(refreshAccessToken(refreshToken));
+      console.log(isAuthenticated);
+      if (isAuthenticated) {
+        navigate("/taskprofile");
+      } else {
+        navigate("/login");
+      }
+    }
+  };
+
   return (
     <>
       <div className="home_main_container">
@@ -16,12 +42,10 @@ const Home = () => {
           <div className="left_navbar">
             <img src={logo} alt="logo" />
           </div>
-          <div className="right_navbar">
-            <Link to="/login">
-              <span className="login_signup_button">
-                Login/SignUp <LockOpenIcon sx={{ margin: "auto 0 auto 1vh" }} />
-              </span>
-            </Link>
+          <div className="right_navbar" onClick={refreshToken}>
+            <span className="login_signup_button">
+              Login/SignUp <LockOpenIcon sx={{ margin: "auto 0 auto 1vh" }} />
+            </span>
           </div>
         </div>
         <div className="middle_container">

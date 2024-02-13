@@ -9,7 +9,12 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5000", "https://taskpulse.onrender.com"],
+    credentials: true,
+  })
+);
 
 // Route imports
 const user = require("./Routes/UserRoute");

@@ -214,10 +214,11 @@ exports.deleteAccount = CatchAsyncError(async (req, res) => {
 exports.checkRefreshToken = CatchAsyncError(async (req, res) => {
   try {
     const { refreshToken } = req.cookies || req.body;
+
     const { id } = jwt.verify(refreshToken, process.env.ENCRYPTION_REF);
 
     if (id) {
-      const user = await User.findById(id).select("refreshToken");
+      const user = await User.findById(id).select("name email refreshToken");
 
       if (user.refreshToken === refreshToken) return sendToken(user, 201, res);
 

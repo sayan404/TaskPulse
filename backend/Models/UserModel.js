@@ -48,7 +48,7 @@ userSchema.pre("save", async function (next) {
 // JWT Token Generation
 userSchema.methods.getJWTToken = function () {
   return jwt.sign({ id: this._id }, process.env.ENCRYPTION_REF, {
-    expiresIn: "86400 seconds",
+    expiresIn: "7d",
   });
 };
 

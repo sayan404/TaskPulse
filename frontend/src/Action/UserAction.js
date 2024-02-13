@@ -11,17 +11,23 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
   CLEAR_ERRORS,
+  REFRESH_REQUEST,
+  REFRESH_SUCCESS,
+  REFRESH_FAILURE,
 } from "../Constants/UserConstant";
 
 import axios from "axios";
-const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT_PROD;
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT_DEV;
 
 export const login = (email, password) => async (dispatch) => {
   console.log(email, password);
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    };
 
     const { data } = await axios.post(
       `${API_ENDPOINT}/api/v1/users/login`,
@@ -39,10 +45,12 @@ export const login = (email, password) => async (dispatch) => {
 // Register
 export const register = (name, email, password) => async (dispatch) => {
   try {
-    console.log("Called");
     dispatch({ type: REGISTER_USER_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    };
 
     const { data } = await axios.post(
       `${API_ENDPOINT}/api/v1/users/register`,
@@ -51,6 +59,8 @@ export const register = (name, email, password) => async (dispatch) => {
     );
     
 
+    localStorage.setItem("userData", JSON.stringify(data?.user));
+
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
     console.log(error);
@@ -58,6 +68,29 @@ export const register = (name, email, password) => async (dispatch) => {
       type: REGISTER_USER_FAIL,
       payload: error,
     });
+  }
+};
+
+// RefreshAccess Token
+export const refreshAccessToken = () => async (dispatch) => {
+  try {
+    dispatch({ type: REFRESH_REQUEST });
+
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    };
+
+    const { data } = await axios.get(
+      `${API_ENDPOINT}/api/v1/users/refresh`,
+      config
+    );
+
+    localStorage.setItem("userData", JSON.stringify(data?.user));
+
+    dispatch({ type: REFRESH_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({ type: REFRESH_FAILURE, payload: error.response.data.error });
   }
 };
 

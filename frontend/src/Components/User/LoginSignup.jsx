@@ -10,6 +10,7 @@ import logo from "../../assets/Logo.png";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Alert } from "@mui/material";
 
 const LoginSignup = () => {
   const location = useLocation();
@@ -66,6 +67,7 @@ const LoginSignup = () => {
   useEffect(() => {
     if (error) {
       dispatch(clearErrors());
+      alert("Some Error Ocuured! Try again after sometime!!");
     }
     if (isAuthenticated) {
       navigate("/taskprofile");

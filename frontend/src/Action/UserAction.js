@@ -49,6 +49,7 @@ export const register = (name, email, password) => async (dispatch) => {
       { name, email, password },
       config
     );
+    
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {

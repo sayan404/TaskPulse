@@ -3,10 +3,9 @@
 const sendToken = (user, statusCode, res) => {
   const token = user.getJWTToken();
   const refreshToken = user.getRefreshToken();
+
   const options = {
-    curentDate: new Date(),
     expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-    httpOnly: true,
   };
 
   // storing data in cookie and parsing as json

@@ -11,6 +11,9 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
   CLEAR_ERRORS,
+  REFRESH_REQUEST,
+  REFRESH_FAILURE,
+  REFRESH_SUCCESS,
 } from "../Constants/UserConstant";
 
 // For SignUp , Login , User Loading Purpose
@@ -19,6 +22,7 @@ export const userReducer = (state = { user: {} }, action) => {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:
     case LOAD_USER_REQUEST:
+    case REFRESH_REQUEST:
       return {
         loading: true,
         isAuthenticated: false,
@@ -26,6 +30,7 @@ export const userReducer = (state = { user: {} }, action) => {
     case LOGIN_SUCCESS:
     case REGISTER_USER_SUCCESS:
     case LOAD_USER_SUCCESS:
+    case REFRESH_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -41,6 +46,7 @@ export const userReducer = (state = { user: {} }, action) => {
       };
     case LOGIN_FAIL:
     case REGISTER_USER_FAIL:
+    case REFRESH_FAILURE:
       return {
         ...state,
         loading: false,

@@ -44,7 +44,7 @@
 .middle_container {
   height: 88vh;
   width: 100vw;
-  background-color: #0ffdc9;
+  background: linear-gradient(90deg,#0ffdc9,#82ffe4,#82ffe4,#0ffdc9);
   display: flex;
   justify-content: space-around;
 }
@@ -57,7 +57,7 @@
   padding: 2vh 2.5vh 2vh 3vh;
   border-radius: 30px;
   cursor: pointer;
-  background-color: #ffcc00;
+  background: linear-gradient(0deg,#ffcc00,#fff700 );
   text-align: center;
   transition: all 0.3s ease-in;
 }
@@ -65,6 +65,7 @@
 .login_signup_button:hover {
   transition: all 0.3s ease-in;
   transform: scale(1.05);
+  background: linear-gradient(0deg,#fff700,#ffcc00 );
 }
 
 .left_middle_container {
@@ -78,25 +79,26 @@
 }
 
 .catchy_text_p_1 {
-  /* font: 400 5vh JetBrains Mono; */
+  font: 900 5vh JetBrains Mono;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-size: xx-large;
+  font-size: 2.5rem;
   padding: 2vh 0;
-  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.708);
+  /* text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.708); */
 }
 
 .emphasised_text {
-  font: 300 4.5vh Chilanka;
+  font: 900 5vh Chilanka;
 }
 
 .catchy_text_p_2 {
   display: flex;
   align-items: center;
   text-align: center;
-  font: 400 2vh JetBrains Mono;
+  font: 700 2vh JetBrains Mono;
+  font-size: 1rem;
   padding: 0.6vh;
-  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.559);
+  /* text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.559); */
 }
 .catchy_text_p_2 > p {
   text-align: left;

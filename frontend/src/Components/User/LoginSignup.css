@@ -37,7 +37,7 @@
 
 .LoginSignUpBox {
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.436);
+  background-color: rgba(255, 255, 255, 0);
   backdrop-filter: blur(80px);
   width: 35vw;
   height: 65vh;
@@ -162,6 +162,7 @@
 .signUpBtn {
   border: none;
   background-color: #207b49d2;
+  background: linear-gradient(0deg,#207b49d2,#30b76dd2);
   color: white;
   font: 300 0.9vmax "Roboto";
   width: 100%;
@@ -176,6 +177,7 @@
 .loginBtn:hover,
 .signUpBtn:hover {
   background-color: #0e542ed2;
+  background: linear-gradient(0deg,#30b76dd2,#207b49d2);
 }
 
 .shiftToLeft {
